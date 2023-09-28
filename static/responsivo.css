@@ -1,0 +1,181 @@
+/* Espaço para trabalhar a responsividade da página */
+/* Responsividade Celular */
+@media (max-width: 400px) {
+
+    /* ########################################### */
+    
+    /* Espaço para breve descrição e vídeo */
+   
+    .cabecalho__menu {
+        display: flex;
+        flex-direction: column;
+        align-items: right;
+        justify-content: center;
+        margin: 10px;
+        gap: 25px;
+    }
+
+    .apresentacao {
+        flex-direction: column-reverse;
+        padding: 2% 4% 2% 4%;
+        gap: 20px;
+    }
+
+    .apresentacao__conteudo {
+        padding: 3% 3% 3% 3%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .apresentacao__conteudo___titulo,
+    .apresentacao__conteudo__texto {
+        width: 90%;
+    }
+
+    .campo_video {
+        width: 100%;
+        height: 250px;
+    }
+
+    .comentarios {
+        padding: 3% 2% 3% 2%;
+        margin: 5% 5% 5% 5%;
+        gap: 10px;
+    }
+
+    .input {
+        width: 87%
+    }
+    .textarea {
+        width: 80%;
+    }
+    
+    .apresentacao__links__navegacao{
+        margin: 0.7em;
+    }
+
+    /* Espaço com os comentários da página */
+
+    .div__scroll__comentarios {
+        padding: 1% 2%;
+        margin-bottom: 7%;
+        display: flex;
+        justify-content: top;
+        align-items: left;
+        flex-direction: column;
+        gap: 10px;
+        width: 90%;
+        height: 30%;
+        font-family: var(--font-secundaria);
+        text-align: justify;
+        background-color: var(--cor-primaria);
+        border-radius: 20px;
+    }
+
+    .div__scroll__comentarios:hover {
+        background-color: var(--cor-primaria);
+    }
+
+    .post {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-family: var(--font-secundaria);
+        font-size: 0.9rem;
+        width: 80%;
+    }
+    
+    .nome_post {
+        font-weight: bold;
+        font-size: 0.8rem;
+    }
+}
+/* ################################*/
+
+/* Responsividade tablet*/
+
+@media (min-width: 400px) and (max-width: 1200px) {
+    .cabecalho {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 7%;
+    }
+
+    .campo_video {
+        width: 40%;
+        height: 250px;
+    }
+
+    .apresentacao__conteudo___titulo,
+    .apresentacao__conteudo__texto {
+        width: 40%;
+    }
+
+    .comentarios {
+        padding: 3% 2% 3% 2%;
+        margin: 5% 5% 5% 5%;
+        gap: 10px;
+    }
+
+    .cabecalho__menu {
+        justify-content: center;
+    }
+
+    .apresentacao {
+        flex-direction: column-reverse;
+        padding: 4% 6% 4% 6%;
+    }
+
+    .comentarios {
+        padding: 4% 6% 4% 6%;
+    }
+    
+    .apresentacao__links__navegacao{
+        margin: 0.7em;
+    }
+
+    .div__scroll__comentarios {
+        padding: 1% 3%;
+        margin-bottom: 10%;
+        display: flex;
+        justify-content: top;
+        align-items: left;
+        flex-direction: column;
+        gap: 20px;
+        width: 90%;
+        height: 170px;
+        font-family: var(--font-secundaria);
+        text-align: justify;
+        background-color: var(--cor-primaria);
+        border-radius: 20px;
+    }
+    
+    .div__scroll__comentarios:hover {
+        background-color: var(--cor-quarta);
+    }
+    
+    .titulo__comentarios {
+        font-family: var(--font-secundaria);
+        color: var(--cor-secundaria);
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    
+    .post {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-family: var(--font-secundaria);
+        font-size: 0.9rem;
+        width: 60%;
+    }
+    
+    .nome_post {
+        font-weight: bold;
+        font-size: 0.8rem;
+    }
+}
