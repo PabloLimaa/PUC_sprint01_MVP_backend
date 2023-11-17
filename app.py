@@ -11,7 +11,6 @@ info = Info(title="Minha API", version="1.0.0")
 app = OpenAPI(__name__, info=info)
 CORS(app)
 
-
 # definindo tags
 home_tag = Tag(name="Documentação", description="Seleção de documentação: Swagger, Redoc ou RapiDoc")
 postagem_tag = Tag(name="Postagem", description="Adição, visualização e remoção de postagens na base")
@@ -29,12 +28,11 @@ def home():
 def add_postagem(form: PostagemSchema):
     """Adiciona uma nova Postagem à base de dados
 
-    Retorna uma representação das postagens e comentários associados.
+    Retorna uma representação das postagens.
     """
     postagem = Postagem(
         nome=form.nome,
-        comentario=form.comentario,
-        nota=form.nota)
+        comentario=form.comentario)
 
     try:
         # criando conexão com a base
@@ -52,11 +50,32 @@ def add_postagem(form: PostagemSchema):
 
     except Exception as e:
         # caso um erro fora do previsto
-        error_msg = "Não foi possível salvar nova postagem :/"
+        error_msg = "Não foi possível salvar nova postagem :/" + str(e)
         return {"mesage": error_msg}, 400
 
-
 @app.get('/postagem', tags=[postagem_tag],
+         responses={"200": PostagemViewSchema, "404": ErrorSchema})
+def get_postagem(query: PostagemBuscaSchema):
+    """Faz a busca por uma postagem a partir do id do post
+
+    Retorna uma representação das postagens.
+    """
+    postagem_id = query.postagem_id
+    # criando conexão com a base
+    session = Session()
+    # fazendo a busca
+    postagem = session.query(Postagem).filter(Postagem.id == postagem_id).first()
+
+    if not postagem:
+        # se a postagem não foi encontrado
+        error_msg = "Postagem não encontrado na base :/"
+        return {"mesage": error_msg}, 404
+    else:
+        # retorna a representação de produto
+        return apresenta_postagem(postagem), 200
+
+
+@app.get('/postagens', tags=[postagem_tag],
          responses={"200": ListagemPostagemSchema, "404": ErrorSchema})
 def get_postagens():
     """Faz a busca por todas as postagens efetuadas
@@ -74,29 +93,7 @@ def get_postagens():
     else:
         # retorna a representação de postagem
         print(postagens)
-        return apresenta_postagem(postagens), 200
-
-
-@app.get('/postagem', tags=[postagem_tag],
-         responses={"200": PostagemViewSchema, "404": ErrorSchema})
-def get_postagem(query: PostagemBuscaSchema):
-    """Faz a busca por uma postagem a partir do id do post
-
-    Retorna uma representação das postagens e comentários associados.
-    """
-    postagem_id = query.postagem_id
-    # criando conexão com a base
-    session = Session()
-    # fazendo a busca
-    postagem = session.query(Postagem).filter(Postagem.id == postagem_id).first()
-
-    if not postagem:
-        # se a postagem não foi encontrado
-        error_msg = "Postagem não encontrado na base :/"
-        return {"mesage": error_msg}, 404
-    else:
-        # retorna a representação de produto
-        return apresenta_postagem(postagem), 200
+        return apresenta_postagens(postagens), 200
 
 
 @app.delete('/postagem', tags=[postagem_tag],

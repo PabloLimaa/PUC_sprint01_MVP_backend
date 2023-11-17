@@ -8,9 +8,7 @@ class PostagemSchema(BaseModel):
     """
     nome: str = "Pablo Lima"
     comentario: str = "O vídeo de apresentação do MVP ficou muito legal!"
-    nota: Optional[int] = 10
     
-
 class PostagemBuscaSchema(BaseModel):
     """ Define como deve ser a estrutura que representa a busca. Que será
         feita com base no id da postagem.
@@ -33,21 +31,18 @@ def apresenta_postagens(postagens: List[Postagem]):
         result.append({
             "nome": postagem.nome,
             "comentario": postagem.comentario,
-            "nota": postagem.nota,
         })
 
     return {"postagens": result}
 
 
 class PostagemViewSchema(BaseModel):
-    """ Define como uma postagem será retornado: postagem + comentários.
+    """ Define como uma postagem será retornado.
     """
     id: int = 1
     nome: str = "Pablo Lima"
     comentario: str = "O vídeo de apresentação de seu MVP ficou muito legal!"
-    nota: Optional[int] = 10
-    total_cometarios: int = 1
-
+    
 
 class PostagemDelSchema(BaseModel):
     """ Define como deve ser a estrutura do dado retornado após uma requisição
@@ -64,5 +59,4 @@ def apresenta_postagem(postagem: Postagem):
         "id": postagem.id,
         "nome": postagem.nome,
         "comentario": postagem.comentario,
-        "nota": postagem.nota
     }
