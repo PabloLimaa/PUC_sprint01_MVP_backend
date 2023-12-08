@@ -10,7 +10,7 @@ class Postagem(Base):
     __tablename__ = 'postagem'
 
     id = Column(Integer, primary_key=True)
-    nome = Column(String(140), unique=True)
+    nome = Column(String(140))
     comentario = Column(String(500))
     data_insercao = Column(DateTime, default=datetime.now())
 
